@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Ejercicio 1</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px; /* Ancho del formulario */
+        }
+        label {
+            margin: 5px 0;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%; /* Ancho completo de las casillas de entrada */
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario Ejercicio 1</h1>
+    <form id="gradeForm">
+        <label for="nota1">Nota 1:</label>
+        <input type="number" id="nota1" name="nota1" min="10" max="70"  required>
+
+        <label for="nota2">Nota 2:</label>
+        <input type="number" id="nota2" name="nota2" min="10" max="70"  required>
+
+        <label for="nota3">Nota 3:</label>
+        <input type="number" id="nota3" name="nota3" min="10" max="70"  required>
+
+        <label for="asistencia">Porcentaje de Asistencia:</label>
+        <input type="number" id="asistencia" name="asistencia" min="0" max="100" required>
+
+        <button type="button" onclick="calcular()">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+       function calcular() {
+            const nota1 = parseFloat(document.getElementById('nota1').value);
+            const nota2 = parseFloat(document.getElementById('nota2').value);
+            const nota3 = parseFloat(document.getElementById('nota3').value);
+            const asistencia = parseFloat(document.getElementById('asistencia').value);
+
+            if (!isNaN(nota1) && !isNaN(nota2) && !isNaN(nota3) && !isNaN(asistencia)) {
+                if (nota1 >= 10 && nota1 <= 70 && nota2 >= 10 && nota2 <= 70 && nota3 >= 10 && nota3 <= 70 && asistencia >= 0 && asistencia <= 100) {
+                    const promedioNotas = (nota1 + nota2 + nota3) / 3;
+
+                    let resultado = '';
+
+                    if (promedioNotas >= 4 && asistencia >= 75) {
+                        resultado = 'Aprobado';
+                    } else {
+                        resultado = 'Reprobado';
+                    }
+
+                    document.getElementById('resultado').innerText = `Promedio de notas: ${promedioNotas.toFixed(2)}. Estado: ${resultado}`;
+                } else {
+                    document.getElementById('resultado').innerText = 'Las notas deben estar entre 10 y 70, y la asistencia entre 0 y 100.';
+                }
+            } else {
+                document.getElementById('resultado').innerText = 'Ingrese valores válidos para las notas y la asistencia.';
+            }
+        }
+    </script>
+</body>
+</html>

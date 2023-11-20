@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario Ejercicio 2</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        label {
+            margin: 5px 0;
+        }
+        input {
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 100%;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #resultado {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulario Ejercicio 2</h1>
+    <form id="nameForm">
+        <label for="nombre1">Nombre 1:</label>
+        <input type="text" id="nombre1" name="nombre1" required>
+
+        <label for="nombre2">Nombre 2:</label>
+        <input type="text" id="nombre2" name="nombre2" required>
+
+        <label for="nombre3">Nombre 3:</label>
+        <input type="text" id="nombre3" name="nombre3" required>
+
+        <button type="button" onclick="obtenerNombreLargo()">Enviar</button>
+    </form>
+    <div id="resultado"></div>
+
+    <script>
+        function obtenerNombreLargo() {
+            const nombre1 = document.getElementById('nombre1').value;
+            const nombre2 = document.getElementById('nombre2').value;
+            const nombre3 = document.getElementById('nombre3').value;
+
+            const nombres = [nombre1, nombre2, nombre3];
+            let nombreLargo = '';
+
+            for (let i = 0; i < nombres.length; i++) {
+                if (nombres[i].length > nombreLargo.length) {
+                    nombreLargo = nombres[i];
+                }
+            }
+
+            document.getElementById('resultado').innerText = `El nombre con la mayor cantidad de caracteres es: ${nombreLargo}`;
+        }
+    </script>
+</body>
+</html>
